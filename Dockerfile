@@ -1,6 +1,4 @@
-# amdかarmを選択する
-# FROM golang:1.19.3-alpine as dev
-FROM arm64v8/golang:1.19.3-alpine as dev
+FROM golang:1.19.3-alpine as dev
 
 WORKDIR /go/src
 
@@ -12,7 +10,6 @@ RUN go get -u github.com/cosmtrek/air && go build -o /go/bin/air github.com/cosm
 
 ARG CGO_ENABLED=0
 ARG GOOS=linux
+# アーキテクチャを指定する
 # ARG GOARCH=amd64
 ARG GOARCH=arm64
-
-# CMD ["air", "-c", ".air.toml"]

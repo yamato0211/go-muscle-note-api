@@ -1,9 +1,7 @@
 version: '3.9'
 services:
   db:
-    # amdかarmを選択する
-    # image: postgres:15.1-alpine
-    image: arm64v8/postgres:15.1-alpine
+    image: postgres:15.1-alpine
     volumes:
       - dbdata:/var/lib/postgresql/data
       - ./data:/db/conf/

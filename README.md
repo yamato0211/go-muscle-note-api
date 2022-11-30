@@ -1,32 +1,20 @@
 # Gin の Docker プロジェクトのサンプル
 
+## .env ファイルの作成
+
+`.env.sample`をコピーし、コピーしたファイルの名前を`.env`に書き換える
+
 ## アーキテクチャーの選択
 
 各自の環境に応じて使用するベースイメージのアーキテクチャを選択する。
 
 Dockerfile
-
-```Dockerfile
-# amdかarmを選択する
-# FROM golang:1.19.3-alpine
-FROM arm64v8/golang:1.19.3-alpine
-```
-
 ```Dockerfile
 ARG CGO_ENABLED=0
 ARG GOOS=linux
+# アーキテクチャを指定する
 # ARG GOARCH=amd64
 ARG GOARCH=arm64
-```
-
-docker-compose.yml
-
-```yml
-services:
-  db:
-    # amdかarmを選択する
-    # image: postgres:15.1-alpine
-    image: arm64v8/postgres:15.1-alpine
 ```
 
 ## ビルド
