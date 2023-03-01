@@ -2,6 +2,7 @@ package main
 
 import (
 	"fiber-muscles/config"
+	"fiber-muscles/models"
 	"fiber-muscles/routers"
 	"fmt"
 
@@ -10,8 +11,9 @@ import (
 
 func main() {
 	app := fiber.New()
-	conf := config.LoadConfig()
+	config.LoadConfig()
+	models.InitDB()
 	routers.Router(app)
 
-	app.Listen(fmt.Sprintf(":%s", conf.Server.Port))
+	app.Listen(fmt.Sprintf(":%s", config.ApiPort))
 }

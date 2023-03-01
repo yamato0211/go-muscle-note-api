@@ -11,6 +11,12 @@ func Router(e *fiber.App) {
 		v1 := api.Group("/v1")
 		{
 			InitHelloWorld(v1)
+			{
+				user := v1.Group("/user")
+				{
+					InitUserRouter(user)
+				}
+			}
 		}
 	}
 }

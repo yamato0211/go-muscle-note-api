@@ -1,13 +1,14 @@
 version: '3.9'
 services:
   db:
+    container_name: muscles-db
     image: postgres:15.2-alpine
     volumes:
       - dbdata:/var/lib/postgresql/data
-      - ./data:/db/conf/
     env_file:
       - .env
-  go_api:
+  api:
+    container_name: muscles-api
     build: .
     tty: true
     volumes:
@@ -20,5 +21,15 @@ services:
       - db
     command: air
 
+  adminer:
+    container_name: muscles-adminer
+    image: adminer:4.7.5
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
 volumes:
-  dbdata: null
+  dbdata:
+    name: fiber-muscles-dev
