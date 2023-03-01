@@ -1,20 +1,17 @@
-// パッケージ名
 package main
 
-// パッケージのインポート
 import (
-	"log"
-	"test/routers"
+	"fiber-muscles/config"
+	"fiber-muscles/routers"
+	"fmt"
 
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
-// go run main.go を実行時に最初に呼ばれる
 func main() {
-	e := gin.Default()
-	routers.Router(e)
+	app := fiber.New()
+	conf := config.LoadConfig()
+	routers.Router(app)
 
-	if err := e.Run("0.0.0.0:8000"); err != nil {
-		log.Fatal("Server Run Failed.: ", err)
-	}
+	app.Listen(fmt.Sprintf(":%s", conf.Server.Port))
 }

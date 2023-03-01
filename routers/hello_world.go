@@ -2,14 +2,13 @@ package routers
 
 // パッケージのインポート
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
-func InitHelloWorld(r *gin.RouterGroup) {
-	r.GET("/", helloWorld)
+func InitHelloWorld(r fiber.Router) {
+	r.Get("/", helloWorld)
 }
 
-
-func helloWorld(ctx *gin.Context) {
-		ctx.String(200, "Hello World 8")
+func helloWorld(c *fiber.Ctx) error {
+	return c.SendString("Hello, World!")
 }

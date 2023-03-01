@@ -2,10 +2,10 @@ package routers
 
 // パッケージのインポート
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
-func Router(e *gin.Engine) {
+func Router(e *fiber.App) {
 	api := e.Group("/api")
 	{
 		v1 := api.Group("/v1")
