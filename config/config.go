@@ -8,12 +8,13 @@ import (
 )
 
 var (
-	ApiPort string
-	DbHost  string
-	DbUser  string
-	DbPass  string
-	DbName  string
-	DbPort  string
+	ApiPort   string
+	DbHost    string
+	DbUser    string
+	DbPass    string
+	DbName    string
+	DbPort    string
+	JwtSecret string
 )
 
 func LoadConfig() {
@@ -26,4 +27,5 @@ func LoadConfig() {
 	DbPass = os.Getenv("POSTGRES_PASSWORD")
 	DbName = os.Getenv("POSTGRES_DB")
 	DbPort = os.Getenv("POSTGRES_PORT")
+	JwtSecret = os.Getenv("JWT_SECRET")
 }

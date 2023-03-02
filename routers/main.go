@@ -12,7 +12,7 @@ func Router(e *fiber.App) {
 		{
 			InitHelloWorld(v1)
 			{
-				user := v1.Group("/user")
+				user := v1.Group("/users")
 				{
 					InitUserRouter(user)
 				}
