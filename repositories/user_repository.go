@@ -5,6 +5,7 @@ import (
 	"fiber-muscles/models"
 	"fiber-muscles/schemas"
 	"fiber-muscles/services"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -46,7 +47,8 @@ func UserLogin(email string, password string) (t schemas.JwtTokenType, err error
 }
 
 func GetUserByID(userID string) (u *models.User, err error) {
-	if err = models.Psql.First(&u, "id = ?", userID).Error; err != nil {
+	if err = models.Psql.Preload("Follows").Preload("Followers").First(&u, "id = ?", userID).Error; err != nil {
+		fmt.Println(err.Error())
 		err = errors.New("this user id user not found")
 		return
 	}
