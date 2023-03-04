@@ -27,7 +27,7 @@ func InitDB() (err error) {
 		log.Fatal(err)
 	}
 
-	if err = Psql.AutoMigrate(&User{}); err != nil {
+	if err = Psql.AutoMigrate(&User{}, &Menu{}, &DailyMenu{}); err != nil {
 		log.Fatal(err)
 	}
 
