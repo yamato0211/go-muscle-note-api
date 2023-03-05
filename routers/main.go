@@ -16,6 +16,10 @@ func Router(e *fiber.App) {
 				{
 					InitUserRouter(user)
 				}
+				menu := v1.Group("/menus")
+				{
+					InitMenuRouter(menu)
+				}
 			}
 		}
 	}
