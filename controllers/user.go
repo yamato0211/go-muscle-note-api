@@ -3,7 +3,6 @@ package controllers
 import (
 	"fiber-muscles/repositories"
 	"fiber-muscles/schemas"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -39,15 +38,14 @@ func LoginUserByInputs(c *fiber.Ctx) error {
 }
 
 func GetMe(c *fiber.Ctx) error {
-	userId := c.Locals("user_id").(string)
-	fmt.Println(userId)
-	if userId == "" {
+	userID := c.Locals("user_id").(string)
+	if userID == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": "token is invalid",
 		})
 	}
 
-	u, err := repositories.GetUserByID(userId)
+	u, err := repositories.GetUserByID(userID)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": err.Error(),
